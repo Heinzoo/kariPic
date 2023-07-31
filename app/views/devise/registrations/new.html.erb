@@ -1,0 +1,55 @@
+<div class="container">
+  <h2>Registrarse</h2>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="input-group py-2">
+      <%= f.label :name, "Nombre", class: "input-group-text", style: "background-color: #e3f2fd;" %>
+      <%= f.text_field :name, placeholder: "Nombre", class: "form-control", 
+        autofocus: true, autocomplete: "new-name" %>
+    </div>
+
+    <div class="input-group py-2">
+      <%= f.label :email, "Correo Electrónico", class: "input-group-text", style: "background-color: #e3f2fd;" %>
+      <%= f.email_field :email, placeholder: "E-Mail", autocomplete: "email", class: "form-control" %>
+    </div>
+
+    <div class="container">
+      <%= f.fields_for :images do |image_form| %>
+        <div class="input-group py-2">
+          <%= image_form.label :url, "Agrega tu imagen de perfil", class: "input-group-text", style: "background-color: #FBCEB1;" %>
+          <%= image_form.text_field :url, placeholder: "URL", class: 'form-control' %>
+        </div>
+        <div class="input-group py-2">
+          <%= image_form.label :context, "Describe donde estabas", class: "input-group-text", style: "background-color: #FBCEB1;" %>
+          <%= image_form.text_field :context, class: 'form-control' %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="input-group py-2">
+      <%= f.label :password, "Contraseña", class: "input-group-text", style: "background-color: #e3f2fd;" %>
+      <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+      <% if @minimum_password_length %>
+        <em class="input-group-text" style="background-color: #e3f2fd;">
+          (<%= @minimum_password_length %> caracteres minimos)
+        </em>
+      <% end %><br />
+    </div>
+
+    <div class="input-group py-2">
+      <%= f.label :password_confirmation, "Confirmar Contraseña", class: "input-group-text", style: "background-color: #e3f2fd;" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+    </div>
+
+    <div class="actions py-2">
+      <%= f.submit "Registrarse", class: "btn btn-success rounded-pill fw-semibold text-white" %>
+    </div>
+  <% end %>
+
+  <% if false %>
+    <%= render "devise/shared/links" %>
+  <% end %>
+
+</div>

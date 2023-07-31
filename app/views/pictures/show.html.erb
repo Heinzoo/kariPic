@@ -1,0 +1,11 @@
+<div class="row">
+  <%= render @picture %>
+
+  <div class="col-8 py-2">
+    <h5 class="fw-bold text-center">Comentarios</h5>
+    <%= render "comments/comment" %>
+    <div class="justify-content-center align-items-center pt-2">
+      <%= render "comments/form" if user_signed_in? %>
+    </div>
+  </div>
+</div>

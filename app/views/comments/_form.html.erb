@@ -1,0 +1,20 @@
+<%= form_with(model: @comment, local: true) do |form| %>
+  <% if @comment.errors.any? %>
+    <div id = 'error_explanation'>
+      <h2>Este comentario no se pudo crear por las siguientes razones: </h2>
+      <ul>
+        <% @comment.errors.full_messages.each do |msg|%>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <%= form.hidden_field :picture_id, value: @picture.id %>
+  <div class="input-group py-2">
+    <%= form.label :content, "Nuevo Comentario", class: "input-group-text", style: "background-color: #e3f2fd;" %>
+    <%= form.text_area :content, class: "form-control" %>
+    <%= form.submit "Guardar", class: "btn btn-success fw-semibold text-white" %>
+  </div>
+  
+<% end %>

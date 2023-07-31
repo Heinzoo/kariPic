@@ -1,0 +1,24 @@
+<div class="toast align-items-center text-bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="d-flex">
+    <div class="toast-body">
+      <%= notice %>
+    </div>
+    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+  </div>
+</div>
+
+<div class="container">
+  <div class="d-flex justify-content-between align-items-center my-3">
+    <h1>Fotografías</h1>
+    <% if (user_signed_in?) && (current_user.admin?) %>
+      <%= link_to "Subir Nueva Fotografia", new_picture_path, class: "btn btn-outline-success" %>
+    <% end %>
+  </div>
+  <div id="pictures">
+    <div class="row">
+      <% @pictures.each do |picture| %>
+        <%= render picture %>
+      <% end %>
+    </div>
+  </div>
+</div>

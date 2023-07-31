@@ -1,0 +1,66 @@
+<div class="d-flex justify-content-between align-items-center">
+  <h2>Editar Usuario</h2>
+  <%= link_to "Back", :back, class: "btn btn-secondary rounded-pill fw-semibold" %>
+</div>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="input-group py-2">
+    <%= f.label :name, "Nombre", class: "input-group-text", style: "background-color: #e3f2fd;" %>
+    <%= f.text_field :name, placeholder: "Nombre", class: "form-control", 
+      autofocus: true, autocomplete: "new-name" %>
+  </div>
+
+  <div class="input-group py-2">
+    <%= f.label :email, "Correo Electrónico", class: "input-group-text", style: "background-color: #e3f2fd;" %>
+    <%= f.email_field :email, placeholder: "E-Mail", autocomplete: "email", class: "form-control" %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="container">
+    <%= f.fields_for :images do |image_form| %>
+      <div class="input-group py-2">
+        <%= image_form.label :url, "Agrega tu imagen de perfil", class: "input-group-text", style: "background-color: #FBCEB1;" %>
+        <%= image_form.text_field :url, placeholder: "URL", class: 'form-control' %>
+      </div>
+      <div class="input-group py-2">
+        <%= image_form.label :context, "Describe donde estabas", class: "input-group-text", style: "background-color: #FBCEB1;" %>
+        <%= image_form.text_field :context, class: 'form-control' %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="input-group py-2">
+    <%= f.label :password, "Contraseña", class: "input-group-text", style: "background-color: #e3f2fd;" %>
+    <%= f.password_field :password, placeholder: "Déjala en blanco si no quieres cambiarla", autocomplete: "new-password", class: "form-control" %>
+    <% if @minimum_password_length %>
+      <em class="input-group-text" style="background-color: #e3f2fd;">
+        (<%= @minimum_password_length %> caracteres minimos)
+      </em>
+    <% end %><br />
+  </div>
+
+  <div class="input-group py-2">
+    <%= f.label :password_confirmation, "Confirmar Contraseña", class: "input-group-text", style: "background-color: #e3f2fd;" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+  </div>
+
+  <div class="input-group py-2">
+    <%= f.label :current_password, "Contraseña Actual", class: "input-group-text", style: "background-color: #e3f2fd;" %>
+    <%= f.password_field :current_password, placeholder: "Necesitamos su contraseña actual para confirmar sus cambios", autocomplete: "current-password", class: "form-control" %>
+  </div>
+
+  <div class="actions py-2">
+    <%= f.submit "Actualizar", class: "btn btn-success rounded-pill fw-semibold text-white" %>
+  </div>
+<% end %>
+
+<% if false %>
+  <h3>Cancelar my account</h3>
+  <div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), 
+    data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+<% end %>

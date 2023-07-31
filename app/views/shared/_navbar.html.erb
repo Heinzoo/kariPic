@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg" style="background-color: #FBCEB1;">
+  <div class="container-fluid">
+    <img src="https://cdn-icons-png.flaticon.com/512/5260/5260065.png" height="30">
+    <a class="navbar-brand" href="#">
+      <%= link_to 'KariPic', root_path, class: 'navbar-brand' %>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <%= link_to 'Fotografias', pictures_path, class: 'nav-link' %>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown dropstart">
+          <a class="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <% if user_signed_in? %>
+              <% if current_user.name %>
+                Hola <%= current_user.name %>
+              <% else %>
+                Hola <%= current_user.email %>
+              <% end %>
+            <% else %>
+              Registrate
+            <% end %>
+          </a>
+          <ul class="dropdown-menu">
+            <% if user_signed_in? %>
+              <li>
+                <%= button_to 'Cerrar sesión', destroy_user_session_path, class: 'dropdown-item' , method: :delete %>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to 'Iniciar sesión', new_user_session_path, class: 'dropdown-item' %>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li>
+                <%= link_to 'Registro', new_user_registration_path, class: 'dropdown-item' %>
+              </li>
+            <% end %>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

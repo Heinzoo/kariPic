@@ -1,0 +1,28 @@
+<h2>Iniciar Sesión</h2>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="field">
+
+  <div class="input-group py-2">
+    <%= f.label :email, "Correo Electrónico", class: "input-group-text", style: "background-color: #e3f2fd;" %>
+    <%= f.email_field :email, autocomplete: "email", autofocus: true, class: "form-control" %>
+  </div>
+
+  <div class="input-group py-2">
+    <%= f.label :password, "Contraseña", class: "input-group-text", style: "background-color: #e3f2fd;" %>
+    <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+  </div>
+
+  <% if devise_mapping.rememberable? %>
+    <div class="field py-2">
+      <%= f.check_box :remember_me, class:"form-check-input" %>
+      <%= f.label :remember_me, " Recuerdame", class: "form-check-label" %>
+    </div>
+  <% end %>
+
+  <div class="actions py-2">
+    <%= f.submit "Iniciar Sesión", class: "btn btn-success rounded-pill fw-semibold text-white" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>

@@ -1,0 +1,20 @@
+<% @comments.each do |comment| %>
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="toast fade show my-2" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <% if comment.user.images[0] %>
+          <img src="<%= comment.user.images[0].url %>" class="rounded me-2" style="width: 35px">
+        <% end %>
+        <strong class="me-auto">
+          <%= comment.user.name %>
+        </strong>
+        <small>
+          <%= distance_of_time_in_words(comment.created_at, Time.now) %>
+        </small>
+      </div>
+      <div class="toast-body">
+        <%= comment.content %>
+      </div>
+    </div>
+  </div>
+<% end %>

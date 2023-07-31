@@ -70,3 +70,11 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem "devise", "~> 4.9"
+
+gem "activestorage", "~> 7.0"
+
+gem "figaro", "~> 1.2"
+
+gem "aws-sdk-s3", "~> 1.132"

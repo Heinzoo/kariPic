@@ -1,0 +1,36 @@
+<%= form_with(model: picture) do |form| %>
+  <% if picture.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(picture.errors.count, "error") %> prohibited this picture from being saved:</h2>
+
+      <ul>
+        <% picture.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="input-group py-2">
+    <%= form.label :images, "Fotografía", class: "input-group-text", style: "background-color: #e3f2fd;" %>
+    <%= form.file_field :images, multiple: true, class: 'form-control' %>
+  </div>
+
+  <div class="input-group py-2">
+    <%= form.label :name, "Titulo", class: "input-group-text", style: "background-color: #e3f2fd;" %>
+    <%= form.text_field :name, placeholder: "Titulo", class: "form-control" %>
+  </div>
+
+  <div class="input-group py-2">
+    <%= form.label :description, "Descripción", class: "input-group-text", style: "background-color: #e3f2fd;" %>
+    <%= form.text_area :description, placeholder: "Descripción", class: "form-control" %>
+  </div>
+  
+  <div class="py-2">
+    <% if action_name == "new" %>
+      <%= form.submit "Guardar", class: "btn btn-success rounded-pill fw-semibold text-white" %>
+    <% else %>
+      <%= form.submit "Actualizar", class: "btn btn-success rounded-pill fw-semibold text-white" %>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,10 @@
+<div class="d-flex align-items-center">
+  <div class="col-1 px-0" style="width: 35px">
+    <%= link_to pictures_path do %>
+      <i class="bi bi-arrow-return-left text-secondary fs-5"></i>
+    <% end %>
+  </div>
+  <h1>Editar Fotografía</h1>
+</div>
+
+<%= render "form", picture: @picture %>

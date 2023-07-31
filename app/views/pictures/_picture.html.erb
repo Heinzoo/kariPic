@@ -1,0 +1,39 @@
+<div id="<%= dom_id picture %>" class="col-4 py-2">
+  <div class="card text-center border-success">
+    <%= image_tag picture.images[0], class: 'card-img-top' %>
+    <div class="card-header d-flex justify-content-around">
+      <h5 class="card-title fw-bold">
+        <%= picture.name %>
+      </h5>
+    </div>
+    <div class="card-body">
+      <p class="card-text fst-italic">
+        <%= picture.description %>
+      </p>
+    </div>
+    <div class="card-footer">
+      <% if action_name == 'index' %>
+        <%= link_to picture do %>
+          <i class="bi bi-eye-fill text-primary fs-5"></i>
+        <% end %>
+      <% else %>
+        <div class="d-flex justify-content-around">
+          <%= link_to pictures_path do %>
+            <i class="bi bi-arrow-return-left text-secondary fs-5 px-1"></i>
+          <% end %>
+          <% if user_signed_in? %>
+            <% if current_user.id == @picture.user_id %>
+              <%= link_to edit_picture_path(picture) do %>
+                <i class="bi bi-pencil-fill text-success fs-5 px-1"></i>
+              <% end %>
+              <%= button_to @picture, method: :delete, style: "all: unset; cursor: pointer" do %>
+                <i class="bi bi-trash-fill text-danger fs-5 px-1"></i>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
